@@ -43,6 +43,16 @@ const PlaceOrder = ({ history }) => {
     const placeOrder = async () => {
         console.log(cart.cartItems, cart.totalPrice)
         await handleCheckout()
+        console.log('function run')
+        await dispatch(createOrder({
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod,
+            itemsPrice: cart.itemsPrice,
+            shippingPrice: cart.shippingPrice,
+            taxPrice: cart.taxPrice,
+            totalPrice: cart.totalPrice
+        }))
 
     }
     const handleCheckout = async () => {
@@ -55,18 +65,11 @@ const PlaceOrder = ({ history }) => {
 
             // Redirect the user to the Stripe Checkout page
             window.location.href = response.data.redirectUrl;
-            dispatch(createOrder({
-                orderItems: cart.cartItems,
-                shippingAddress: cart.shippingAddress,
-                paymentMethod: cart.paymentMethod,
-                itemsPrice: cart.itemsPrice,
-                shippingPrice: cart.shippingPrice,
-                taxPrice: cart.taxPrice,
-                totalPrice: cart.totalPrice
-            }))
+
 
         } catch (error) {
             // Handle error
+
             console.error('Error during checkout:', error);
         }
     };
