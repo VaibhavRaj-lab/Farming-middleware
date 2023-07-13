@@ -14,7 +14,7 @@ import supplierRoutes from './routes/supplierRoutes.js'
 import cors from "cors"
 dotenv.config('./../.env');
 import stripe from 'stripe';
-const stripeInstance = stripe('sk_test_51NChkFSErIlfwGbzY4AlxPeUUrqFg2JlZJqJ5D6Cu0eA83AWDEm5xUjrMqRemhzvBDzu72ABeSLHGMotp4x1swfK000CUc44GP');
+const stripeInstance = stripe('process.env.StripeKey');
 
 
 connectDB();
